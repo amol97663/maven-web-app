@@ -18,7 +18,7 @@ node{
         }
         
     stage('Upload Build Artifact') {
-        nexusArtifactUploader artifacts: [[artifactId: '01-maven-web-app', classifier: '', file: 'target/01-maven-web-app.war', type: 'war']], credentialsId: 'Nexus cred', groupId: 'in.amolanarase', nexusUrl: 'http://34.125.54.60:8081/', nexusVersion: 'nexus3', protocol: 'http', repository: 'amolanarase-snapshot-repository', version: '1.0-SNAPSHOT'
+        nexusArtifactUploader artifacts: [[artifactId: '01-maven-web-app', classifier: '', file: 'target/01-maven-web-app.war', type: 'war']], credentialsId: 'Nexus cred', groupId: 'in.amolanarase', nexusUrl: 'http://34.125.54.60:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'amolanarase-snapshot-repository', version: '1.0-SNAPSHOT'
         }
     }
 }
