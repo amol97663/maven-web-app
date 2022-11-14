@@ -2,7 +2,10 @@ node{
     
     stage('Clone repo'){
        git credentialsId: 'GitRepo', url: 'https://github.com/amol97663/maven-web-app.git'
+        
+        
     }    
+    
     
     stage('Maven Build'){     
        def mavenHome = tool name: "Maven-3.8.6", type: "maven"
@@ -10,6 +13,7 @@ node{
        sh "${mavenCMD} clean package" 
         
     }
+    
 
     stage('Code Review') {
        withSonarQubeEnv('Sonar-Server-8.9') {
@@ -17,14 +21,27 @@ node{
         def mavenCMD = "${mavenHome}/bin/mvn"
         sh "${mavenCMD} sonar:sonar" 
            
+           
     }    
+        
        
     stage('Upload Build Artifact') {
         nexusArtifactUploader artifacts: [[artifactId: '01-maven-web-app', classifier: '', file: 'target/01-maven-web-app.war', type: 'war']], credentialsId: 'NexusCred', groupId: 'in.amolanarase', nexusUrl: '34.125.54.60:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'amol-snapshot-repository', version: '1.0-SNAPSHOT'
         
         
         }    
+        
+    stage('Deploy') {
+         
+    sshagent(['tomcat-server-agent']) {
+    sh 'scp -o StrictHostKeyChecking=no target/01-maven-web-app.war amol97663@34.125.7.5:/home/amol97663/apache-tomcat-9.0.68/webapps
+        
+        
+        
+           }
+        }    
     }   
+    
 }
 
 
