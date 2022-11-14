@@ -10,8 +10,16 @@ node{
        sh "${mavenCMD} clean package" 
         
     }
-     
+
+    stage('Code Review') {
+       withSonarQubeEnv('Sonar-Server-8.9') {
+        def mavenHome = tool name: "Maven-3.8.6", type: "maven"
+        def mavenCMD = "${mavenHome}/bin/mvn"
+        sh "${mavenCMD} sonar:sonar"   
+    
+    }
 }
+
 
 
         
