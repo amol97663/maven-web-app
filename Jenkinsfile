@@ -17,9 +17,14 @@ node{
         def mavenCMD = "${mavenHome}/bin/mvn"
         sh "${mavenCMD} sonar:sonar" 
            
-           
-       }
-    }
+    }    
+       
+    stage('Upload Build Artifact') {
+        nexusArtifactUploader artifacts: [[artifactId: '01-maven-web-app', classifier: '', file: 'target/01-maven-web-app.war', type: 'war']], credentialsId: 'NexusCred', groupId: 'in.AmolAnarase', nexusUrl: '34.125.54.60:8081/', nexusVersion: 'nexus3', protocol: 'http', repository: 'amolanarase-snapshot', version: '1.0-SNAPSHOT'
+        
+        
+        }    
+    }   
 }
 
 
