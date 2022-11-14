@@ -26,7 +26,7 @@ node{
    sh 'scp -o StrictHostKeyChecking=no target/01-maven-web-app.war tomcat@34.125.145.213:/opt/tomcat/webapps'
            // deploy adapters: [tomcat9(credentialsId: 'Tomcat', path: '', url: 'http://34.125.145.213//')], contextPath: null, onFailure: false, war: '**/*.war'
        
-       
+       }
         }
     }
     }
