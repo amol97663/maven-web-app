@@ -24,7 +24,7 @@ node{
         stage('deploy') {
        // sshagent(['tomcat-server-agent']) {
    // sh 'scp -o StrictHostKeyChecking=no target/01-maven-web-app.war tomcat-server@34.125.145.213:/opt/tomcat/webapps'
-            deploy adapters: [tomcat9(credentialsId: 'Tomcat', path: '', url: 'http://34.125.206.136/')], contextPath: null, onFailure: false, war: '**/*.war'
+            deploy adapters: [tomcat9(credentialsId: 'Tomcat', path: '', url: 'http://34.125.145.213/')], contextPath: null, onFailure: false, war: '**/*.war'
        
        
         }
