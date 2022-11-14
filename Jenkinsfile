@@ -21,8 +21,13 @@ node{
         nexusArtifactUploader artifacts: [[artifactId: '01-maven-web-app', classifier: '', file: 'target/01-maven-web-app.war', type: 'war']], credentialsId: 'Nexus cred', groupId: 'in.amolanarase', nexusUrl: '34.125.54.60:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'amolanarase-snapshot-repository', version: '1.0-SNAPSHOT'
         }
         
-        
-        
+        stage('deploy') {
+        sshagent(['tomcat-server-agent']) {
+    sh 'scp -o StrictHostKeyChecking=no target/01-maven-web-app.war tomcat-server@34.125.145.213://opt/tomcat/webapps'
+        }
+       
+        }
+    }
     }
         
         
