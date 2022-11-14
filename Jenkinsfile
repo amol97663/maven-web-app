@@ -33,7 +33,7 @@ node{
         
     stage('Deploy') {
          
-    sshagent(['tomcat-server-agent']) {
+    sshagent(['Tomcat-Server-New']) {
     sh 'scp -o StrictHostKeyChecking=no target/01-maven-web-app.war amol97663@34.125.7.5:/home/amol97663/apache-tomcat-9.0.68/webapps'
         
         
